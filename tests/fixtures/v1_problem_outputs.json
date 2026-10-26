@@ -1,0 +1,55 @@
+[
+  {
+    "view_id": "0008",
+    "detections": [
+      {
+        "class": "desk",
+        "confidence": 0.5450859069824219,
+        "bbox_xyxy": [
+          130.5269775390625,
+          230.5823211669922,
+          432.82049560546875,
+          479.71307373046875
+        ],
+        "world_xyz": null,
+        "validated_3d": false,
+        "mask_path": "0008/mask_000.png"
+      }
+    ],
+    "vlm_answer": "YOLOE 清單：[{\"class\": \"白板\", \"confidence\": 0.6666666666666666, \"bbox_xyxy\": [260, 0, 644, 246], \"world_xyz\": null, \"validated_3d\": false, \"mask_path\": \"0008/mask_000.png\"}]\nVLM 觀察：[{\"class\": \"桌子\", \"confidence\": 0.5450859069824219, \"bbox_xyxy\": [130.5269775390625, 230.5823211669922, 432.82049560546875, 479.71307373046875], \"world_xyz\": null, \"validated_3d\": false, \"mask_path\": \"0008/mask_000.png\"}]"
+  },
+  {
+    "view_id": "0011",
+    "detections": [],
+    "vlm_answer": "YOLOE 清單：\n- 電腦螢幕\n- 磁鐵\n- 紙張\n- 機器人模型\n- 箱子\n- 筆記本電腦\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- 磁鐵\n- 紙張\n- �"
+  },
+  {
+    "view_id": "0014",
+    "detections": [
+      {
+        "class": "desk",
+        "confidence": 0.3598962724208832,
+        "bbox_xyxy": [
+          67.84820556640625,
+          363.23779296875,
+          328.74871826171875,
+          480.0
+        ],
+        "world_xyz": null,
+        "validated_3d": false,
+        "mask_path": "0014/mask_000.png"
+      }
+    ],
+    "vlm_answer": "YOLOE 清單：[{\"class\": \"鏡子\", \"confidence\": 0.9999999999999999, \"bbox_xyxy\": [250, 0, 525, 476], \"world_xyz\": null, \"validated_3d\": false, \"mask_path\": \"0014/mask_000.png\"}, {\"class\": \"櫃子\", \"confidence\": 0.9999999999999999, \"bbox_xyxy\": [525, 0, 644, 476], \"world_xyz\": null, \"validated_3d\": false, \"mask_path\": \"0014/mask_000.png\"}, {\"class\": \"衣櫃\", \"confidence\": 0.9999999999999999, \"bbox_xyxy\": [182, 79, 335, 476], \"world_xyz\": null, \"validated_3d\": false, \"mask_path\": \"0014/mask_"
+  },
+  {
+    "view_id": "0016",
+    "detections": [],
+    "vlm_answer": "YOLOE 清單：\n- 白色櫃子（可能是衣櫃或儲物櫃）\n\nVLM 觀察：\n- 房間裡有一個白色的櫃子，可能是衣櫃或儲物櫃。"
+  },
+  {
+    "view_id": "0017",
+    "detections": [],
+    "vlm_answer": "YOLOE 清單：\n- 桌子上的文件和書籍\n- 電腦鍵盤和鼠標\n- 電話\n- 藍色的杯子\n- 經典的電話機\n- 紙巾盒\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話機\n- 經典的電話"
+  }
+]
