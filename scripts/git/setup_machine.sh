@@ -8,7 +8,7 @@
 #   onboard 機載 Orin Nano（SLAM 前端） repo 限定 Deploy key：bring-up 可寫，飛行階段改唯讀；現場改動推到筆電
 set -euo pipefail
 
-GITHUB_REPO="${DSN_GITHUB_REPO:-hhbbjjya/drone-semantic-navigation}"
+GITHUB_REPO="${DSN_GITHUB_REPO:-hhbbjjya/-drone-semantic-navigation}"
 HOST_ALIAS="github-dsn"
 LAPTOP_HOST=""
 DRY=0

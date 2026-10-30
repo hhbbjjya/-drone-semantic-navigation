@@ -25,6 +25,6 @@ slam_frontend:
   backend_timeout_s: 2.0      # 超過此時間未收到筆電修正 → 標記「無全域修正」
 
 flight_controller:
-  link: serial                # Pixhawk 4 TELEM2 → Orin UART
-  device: /dev/ttyTHS1        # TODO: 依實際接線確認
-  baud: 921600
+  link: usb                   # Pixhawk 4 USB CDC ACM
+  device: /dev/ttyACM0        # 已在 Jetson Orin Nano 實測成功
+  baud: 115200                # pymavlink 連線參數；非 USB 實際傳輸速率

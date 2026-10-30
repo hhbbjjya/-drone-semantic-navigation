@@ -6,7 +6,7 @@
 
 ```bash
 # 三台都一樣：先 clone（桌機請在 WSL 家目錄，不要放 /mnt/c）
-git clone https://github.com/hhbbjjya/drone-semantic-navigation.git ~/drone-semantic-navigation
+git clone https://github.com/hhbbjjya/-drone-semantic-navigation.git ~/drone-semantic-navigation
 cd ~/drone-semantic-navigation
 cp .env.example .env            # 填入 DSN_ROLE 等
 
