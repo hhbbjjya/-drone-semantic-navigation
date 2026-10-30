@@ -1,0 +1,29 @@
+# 雙目 IMX477 標定結果範本。每次重新標定：另存為 stereo_imx477_<YYYY-MM-DD>.yaml 並 commit，
+# 舊檔不要覆蓋——實驗設定檔引用的是「哪一次」標定。
+meta:
+  date: YYYY-MM-DD
+  method: ChArUco              # 板子規格、張數、工具版本
+  board: { squares_x: 0, squares_y: 0, square_m: 0.0, marker_m: 0.0, dict: DICT_ }
+  camera_serials: { left: TODO, right: TODO }
+  image_size: [0, 0]
+  reprojection_rms_px: { left: null, right: null, stereo: null }
+  nominal_baseline_m: 0.080
+  notes: ""
+
+left:
+  K: [fx, 0, cx, 0, fy, cy, 0, 0, 1]
+  dist_model: plumb_bob
+  D: [k1, k2, p1, p2, k3]
+right:
+  K: [fx, 0, cx, 0, fy, cy, 0, 0, 1]
+  dist_model: plumb_bob
+  D: [k1, k2, p1, p2, k3]
+
+# 右相機相對左相機
+T_left_right:
+  R: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+  t_m: [-0.080, 0, 0]
+
+# 之後補：相機-IMU（Pixhawk）外參與時間偏移
+T_imu_left: null
+time_offset_s: null

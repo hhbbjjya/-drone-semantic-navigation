@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+# 提交前檢查：大檔、權重/飛行紀錄、機密。純 bash，三台機器（含 Jetson）都不需額外安裝。
+# 啟用：git config core.hooksPath .githooks（scripts/git/setup_machine.sh 會自動設定）
+# 緊急略過：git commit --no-verify（事後務必補檢查）
+set -euo pipefail
+
+WARN_BYTES=$((20 * 1024 * 1024))
+BLOCK_BYTES=$((50 * 1024 * 1024))
+fail=0
+
+say() { printf '[pre-commit] %s\n' "$*" >&2; }
+
+# 只檢查本次新增/修改的檔案
+mapfile -d '' files < <(git diff --cached --name-only -z --diff-filter=ACMR)
+
+for f in "${files[@]}"; do
+  [ -n "$f" ] || continue
+
+  case "$f" in
+    *.pt|*.pth|*.onnx|*.engine|*.plan|*.safetensors|*.gguf)
+      say "拒絕：模型權重/編譯產物不進 Git → $f（改用 scripts/ 下載並記錄版本）"; fail=1 ;;
+    *.ulg|*.tlog|*.bag|*.db3|*.mcap)
+      say "拒絕：飛行/感測紀錄不進 Git → $f（存 NAS，Git 只放索引）"; fail=1 ;;
+    .env|.env.*)
+      [ "$f" = ".env.example" ] || { say "拒絕：.env 含機密 → $f"; fail=1; } ;;
+  esac
+
+  size=$(git cat-file -s ":$f" 2>/dev/null || echo 0)
+  if [ "$size" -ge "$BLOCK_BYTES" ]; then
+    say "拒絕：$f 大小 $((size / 1024 / 1024)) MB，超過 50 MB"; fail=1
+  elif [ "$size" -ge "$WARN_BYTES" ]; then
+    say "警告：$f 大小 $((size / 1024 / 1024)) MB，確認真的需要進 Git"
+  fi
+done
+
+# 掃描新增內容中的機密樣式（排除本檔自身）
+secret_re='(-----BEGIN [A-Z ]*PRIVATE KEY-----|hf_[A-Za-z0-9]{30,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16})'
+if git diff --cached -U0 --diff-filter=ACMR -- . ':(exclude).githooks/*' \
+     | grep -E '^\+' | grep -Eq "$secret_re"; then
+  say "拒絕：新增內容疑似含金鑰/Token，請改放 .env"
+  git diff --cached -U0 --diff-filter=ACMR -- . ':(exclude).githooks/*' \
+    | grep -E '^\+' | grep -Eo "$secret_re" | sed 's/^\(.\{8\}\).*/  命中：\1…/' >&2
+  fail=1
+fi
+
+exit "$fail"

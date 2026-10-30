@@ -1,0 +1,30 @@
+# 機載 Jetson Orin Nano。實體機器專屬的值請放 config/hosts/local/onboard.yaml（不進 Git）。
+role: onboard
+hostname: uav-orin            # 建議實際設成這個主機名，方便辨識紀錄
+arch: aarch64
+
+paths:
+  data: ${DSN_DATA_ROOT}
+  models: ${DSN_DATA_ROOT}/models
+  logs: ${DSN_DATA_ROOT}/runs
+
+network:
+  ros_domain_id: 42
+  # 實驗室區網建議固定 IP，三台一致規劃
+  ip: 192.168.50.10
+
+cameras:
+  stereo:
+    driver: imx477_stereo     # TODO: 實際驅動
+    calibration: calibration/stereo_imx477_TEMPLATE.yaml
+
+slam_frontend:
+  system: TODO                # 選定後寫 ADR（見 ADR 0004 待決定事項）
+  imu_source: TODO            # pixhawk_mavlink | dedicated_imu（需先量測時間偏移與抖動）
+  power_mode: TODO            # 以實際飛行時的 Orin Nano 功率模式測試與記錄
+  backend_timeout_s: 2.0      # 超過此時間未收到筆電修正 → 標記「無全域修正」
+
+flight_controller:
+  link: serial                # Pixhawk 4 TELEM2 → Orin UART
+  device: /dev/ttyTHS1        # TODO: 依實際接線確認
+  baud: 921600

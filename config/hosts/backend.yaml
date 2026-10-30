@@ -1,0 +1,18 @@
+# 筆電 RTX 5070：SLAM 重型最佳化（迴圈閉合、全域 BA）；同時是現場 Git 伺服器（field remote）
+role: backend
+hostname: nb-backend
+arch: x86_64
+
+paths:
+  data: ${DSN_DATA_ROOT}
+  logs: ${DSN_DATA_ROOT}/runs
+  field_repo: ~/repos/drone-semantic-navigation.git
+
+network:
+  ros_domain_id: 42
+  ip: 192.168.50.30
+
+slam_backend:
+  system: TODO                # 與機載前端配對的後端，選定後寫 ADR
+  tasks: [loop_closure, global_ba, map_merge]
+  max_correction_age_s: 5.0   # 超過此時間的修正機載直接丟棄（ADR 0004 失效模式）

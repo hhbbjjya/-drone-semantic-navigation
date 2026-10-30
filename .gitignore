@@ -1,8 +1,56 @@
+# ===== Python / 環境 =====
 .venv/
+venv/
 __pycache__/
 *.pyc
-room_scan_outputs/
-datasets/
+*.egg-info/
+
+# ===== 機密（只提交 .env.example）=====
+.env
+.env.*
+!.env.example
+*.pem
+id_*
+!id_*.pub
+
+# ===== 各機器本地覆寫設定（範本在 config/hosts/*.yaml）=====
+config/hosts/local/
+
+# ===== 模型權重與編譯產物（用 scripts/ 下載，Git 只記版本）=====
+models/
 *.pt
-*.ts
+*.pth
+# TorchScript 權重：放 models/ 或用 .torchscript 副檔名。不用 *.ts（會誤擋 TypeScript 原始碼）
+*.torchscript
+mobileclip*.ts
+*.onnx
+*.engine
+*.plan
+*.safetensors
+*.gguf
+
+# ===== 資料集與實驗輸出 =====
+datasets/
+outputs/
+runs/
+room_scan_outputs*/
 *.zip
+
+# ===== 感測與飛行紀錄（體積大，且 .ulg 可能含 GPS 位置）=====
+*.bag
+*.db3
+*.mcap
+*.ulg
+*.tlog
+
+# ===== ROS 2 colcon 產物 =====
+build/
+install/
+log/
+
+# ===== 編輯器 / 系統 =====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*:Zone.Identifier

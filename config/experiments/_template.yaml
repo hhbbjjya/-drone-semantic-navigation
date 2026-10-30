@@ -1,0 +1,24 @@
+# 複製成 config/experiments/<日期>-<名稱>.yaml，commit 後再用 scripts/git/tag_experiment.sh 打標籤。
+# 一個實驗 = 一個設定檔 + 一個標籤 + 一個輸出目錄（輸出目錄名稱含標籤）。
+name: TEMPLATE
+date: YYYY-MM-DD
+hypothesis: >
+  這次實驗要驗證什麼？預期看到什麼結果？
+location: 實驗室 / 走廊 / 戶外（不要寫精確地址或座標）
+machines: [onboard, backend, vlm]
+
+inputs:
+  calibration: calibration/stereo_imx477_TEMPLATE.yaml
+  dataset: null               # 離線實驗：資料集名稱與版本
+  vlm_revision: null
+
+parameters: {}
+
+safety:
+  max_altitude_m: 1.5
+  tether: true
+  pilot: 姓名                  # 現場手動接管的人
+
+outputs:
+  storage: NAS 路徑（rosbag / .ulg 不進 Git）
+  notes: 實驗後填：成功/失敗、異常、下一步

@@ -1,0 +1,33 @@
+# CI 只驗證「邏輯正確」與「倉庫衛生」；GPU、Jetson、即時效能在實機上量測。
+name: ci
+
+on:
+  push:
+    branches: [main, "feat/**", "infra/**", "field/**"]
+  pull_request:
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shell 腳本語法
+        run: |
+          for f in scripts/git/*.sh .githooks/pre-commit $(git ls-files '*.sh'); do
+            bash -n "$f"
+          done
+      - name: 禁止大檔、權重、紀錄與 .env
+        run: |
+          bad=""
+          while IFS= read -r -d '' f; do
+            [ "$(stat -c%s "$f")" -gt 52428800 ] && bad="$bad $f"
+          done < <(git ls-files -z)
+          bad="$bad $(git ls-files '*.pt' '*.engine' '*.safetensors' '*.onnx' '*.ulg' '*.mcap' '*.db3' '.env' | tr '\n' ' ')"
+          if [ -n "$(echo $bad)" ]; then echo "不應進 Git 的檔案：$bad"; exit 1; fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: common 單元測試
+        run: |
+          pip install -r requirements/common.txt
+          python -m unittest discover -s tests -p "test_common.py" -v

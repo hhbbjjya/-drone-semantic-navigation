@@ -1,0 +1,17 @@
+# 三台機器（含 WSL）一律以 LF 存放，避免 .sh 在 Jetson 上因 CRLF 失敗
+* text=auto eol=lf
+*.sh   text eol=lf
+*.py   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.md   text eol=lf
+.githooks/* text eol=lf
+
+# 二進位檔不做換行轉換與文字 diff
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.stl  binary
+*.sldprt binary
