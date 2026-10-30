@@ -1,0 +1,20 @@
+# 桌機 RTX 5070 Ti：VLM / VLA 推論
+role: vlm
+hostname: ws-vlm
+arch: x86_64
+
+paths:
+  data: ${DSN_DATA_ROOT}
+  models: ${DSN_DATA_ROOT}/models
+  hf_cache: ~/.cache/huggingface
+  logs: ${DSN_DATA_ROOT}/runs
+
+network:
+  ros_domain_id: 42
+  ip: 192.168.50.20
+
+vlm:
+  model: Qwen/Qwen2.5-VL-3B-Instruct
+  revision: null              # TODO: 填入 Hugging Face commit hash，固定模型版本
+  dtype: auto
+  max_new_tokens: 256

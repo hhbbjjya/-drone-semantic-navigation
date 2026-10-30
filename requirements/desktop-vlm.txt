@@ -1,0 +1,15 @@
+# 桌機 RTX 5070 Ti（x86_64, Blackwell）：VLM / VLA 與 semantic/roomscan
+# torch / torchvision 另外安裝：RTX 50 系列需支援 sm_120 的版本（CUDA 12.8 以上建置），依 PyTorch 官方指引。
+# 原 requirements.txt 的內容搬到這裡，版本維持不變。
+-r common.txt
+transformers==4.57.6
+accelerate==1.15.0
+ultralytics==8.4.189
+gradio==6.17.3
+pandas==3.1.0
+pillow==12.3.0
+trimesh==5.2.0
+plotly==7.1.0
+rtree==1.4.1
+fast-simplification==0.2.0
+clip @ git+https://github.com/ultralytics/CLIP.git@7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40

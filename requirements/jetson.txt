@@ -1,0 +1,10 @@
+# 機載 Orin Nano（aarch64, JetPack）
+#
+# !!! torch / torchvision 不可從 PyPI 安裝 !!!
+# 必須使用 NVIDIA 為你目前 JetPack 版本提供的 wheel，否則會裝到無 CUDA 的版本。
+# 先執行 `cat /etc/nv_tegra_release` 確認 L4T 版本，再到 NVIDIA 官方文件找對應 wheel。
+# 安裝後用 `python3 scripts/env_check.py --role onboard` 確認 cuda_available=True。
+#
+# OpenCV 建議使用 JetPack 內建版本（含 GStreamer，CSI 相機需要），不要 pip install opencv-python。
+-r common.txt
+pymavlink>=2.4

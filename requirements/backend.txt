@@ -1,0 +1,5 @@
+# 筆電 RTX 5070（x86_64, Blackwell）：slam/backend 重型最佳化
+# 選定 SLAM 系統後補上依賴，並在 docs/decisions/ 新增 ADR 說明選擇理由。
+# 若需要 torch：RTX 50 系列需支援 sm_120 的版本（CUDA 12.8 以上建置），依 PyTorch 官方指引安裝。
+-r common.txt
+scipy>=1.11

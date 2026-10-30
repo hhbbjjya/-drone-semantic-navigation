@@ -1,0 +1,4 @@
+# 三台機器共用，只放純 Python、跨架構都有 wheel 的套件。
+# 不要在這裡放 torch：三台的 torch 來源不同（見各角色檔案）。
+pyyaml>=6.0
+numpy>=1.26
